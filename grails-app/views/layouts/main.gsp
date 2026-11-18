@@ -8,6 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <asset:stylesheet src="styles.css"/>
+    <asset:stylesheet src="fontawesome.min.css"/>
+%{--    <asset:javascript src="jquery-3.3.1.min.js"/>--}%
+    <asset:javascript src="jquery-3.7.0.min.js"/>
+    <asset:javascript src="all.min.js"/>
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
 </head>
 <body>
@@ -46,14 +51,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 5])}">Gestión de Obras</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 8])}">Gestión de Trámites</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 4])}">Administración de Consultorios</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 1])}">Evaluación Docentes</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 9])}">Bitácora de conocimientos</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 15])}">Administración de política pública</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 21])}">Administración de condominios</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'producto', params: [id: 22])}">Sistema de contabilidad</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 5])}">Gestión de Obras</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 8])}">Gestión de Trámites</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 4])}">Administración de Consultorios</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 1])}">Evaluación Docentes</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 9])}">Bitácora de conocimientos</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 15])}">Administración de política pública</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 21])}">Administración de condominios</a></li>
+                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 22])}">Sistema de contabilidad</a></li>
                     </ul>
                 </li>
             </ul>
@@ -75,8 +80,16 @@
     </div>
 </footer>
 
+%{--<asset:javascript src="jquery-3.3.1.min.js"/>--}%
+<asset:javascript src="jquery-3.7.0.min.js"/>
+<asset:javascript src="jquery.validate.min.js"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<asset:javascript src="bootbox.min.js"/>
+<%-- 3. Scripts del template --%>
 <asset:javascript src="scripts.js"/>
-%{--<g:pageProperty name="page.scripts"/>--}%
+<%-- 4. Scripts específicos de cada página (DESCOMENTADO) --%>
+<g:pageProperty name="page.scripts"/>
+
+
 </body>
 </html>

@@ -22,7 +22,7 @@
     </root>
 
     <springProfile name="development">
-        <logger name="StackTrace" level="ERROR" />
+<!--        <logger name="StackTrace" level="ERROR" />-->
 
 <!--        <logger name="code2" level="DEBUG"/>-->
 

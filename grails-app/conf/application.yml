@@ -37,25 +37,25 @@ grails:
   codegen:
     defaultPackage: code2
   profile: web
-#dataSource:
-#  driverClassName: org.h2.Driver
-#  username: sa
-#  password: ''
-#  pooled: true
-#  jmxExport: true
-#environments:
-#  development:
-#    dataSource:
-#      dbCreate: create-drop
-#      url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#  test:
-#    dataSource:
-#      dbCreate: update
-#      url: jdbc:h2:mem:testDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#  production:
-#    dataSource:
-#      dbCreate: none
-#      url: jdbc:h2:./prodDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  controllers:
+    upload:
+      maxFileSize: 30000000
+      maxRequestSize: 30000000
+
+  # ============ SPRING MULTIPART ============
+  spring:
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 10MB
+        max-request-size: 20MB
+        file-size-threshold: 2MB
+
+  # ============ TOMCAT (CLAVE) ============
+  server:
+    tomcat:
+      max-http-form-post-size: 20MB
+      max-swallow-size: 20MB
 
 dataSource:
   pooled: true
@@ -99,13 +99,9 @@ environments:
         jdbcInterceptors: ConnectionState
         defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
-
-
-
-
-
 hibernate:
   cache:
     queries: false
     use_second_level_cache: false
     use_query_cache: false
+

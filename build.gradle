@@ -43,7 +43,8 @@ dependencies {
 //    testAndDevelopmentOnly "org.webjars.npm:bootstrap-icons"
     implementation "org.webjars.npm:bootstrap:5.3.3"
     implementation "org.webjars.npm:bootstrap-icons:1.11.3"
-    testAndDevelopmentOnly "org.webjars.npm:jquery"
+//    testAndDevelopmentOnly "org.webjars.npm:jquery"
+//    implementation 'org.webjars:jquery:3.7.1'
     implementation platform("org.apache.grails:grails-bom:$grailsVersion")
     implementation "org.apache.grails:grails-core"
     implementation "org.apache.grails:grails-data-hibernate5"
