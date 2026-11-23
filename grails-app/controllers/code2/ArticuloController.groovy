@@ -14,7 +14,7 @@ class ArticuloController {
     def tablaArticulos_ajax(){
         def seccion = Seccion.get(params.seccion)
         def articulos = Articulo.findAllBySeccion(seccion).sort{it.orden}
-        return [articuloInstanceList: articulos]
+        return [articuloInstanceList: articulos, seccion: seccion]
     }
 
     def form_ajax(){
@@ -31,7 +31,7 @@ class ArticuloController {
 
     @Transactional
     def guardarArticulo_ajax () {
-        println("---------- " + params)
+//        println("params articulo " + params)
 
         def articuloInstance
         def seccion = Seccion.get(params.seccion)
@@ -65,7 +65,7 @@ class ArticuloController {
 
     def tablaImagenes_ajax(){
         def articulo = Articulo.get(params.id)
-        def imagenes = Imagen.findAllByArticulo(articulo)
+        def imagenes = Imagen.findAllByArticulo(articulo).sort{it.orden}
         return [articulo: articulo, imagenes: imagenes]
     }
 
@@ -112,10 +112,20 @@ class ArticuloController {
 
                 f.transferTo(file)
 
+                def ultimoOrden
+                def maxOrden = Imagen.createCriteria().get {
+                    eq('articulo', articulo)
+                    projections {
+                        max('orden')
+                    }
+                } ?: 0
+                int siguienteOrden = (maxOrden as Integer) + 1
+
                 if(!imagenExiste){
                     def nuevaImagen = new Imagen()
                     nuevaImagen.articulo = articulo
                     nuevaImagen.nombre = fileName
+                    nuevaImagen.orden = siguienteOrden
                     nuevaImagen.save(flush: true)
                 }else{
                     imagenExiste.nombre = fileName
@@ -131,4 +141,50 @@ class ArticuloController {
             render "no_Seleccione una imagen JPG, JPEG, PNG"
         }
     }
+
+    @Transactional
+    def borrarImagenArticulo_ajax(){
+       def imagen = Imagen.get(params.id)
+
+        if(imagen){
+            try{
+
+                def old = imagen.nombre
+                if (old && old.trim() != "") {
+                    def oldPath = "/var/tedein/imagenes/articulo_${imagen?.articulo?.id}/" + old
+                    def oldFile = new File(oldPath)
+                    if (oldFile.exists()) {
+                        oldFile.delete()
+                    }
+                }
+
+                imagen.delete(flush:true)
+                render "ok_Imagen borrada correctamente"
+
+            }catch(e){
+                println("error al borrar la imagen " + imagen.errors + e)
+                render "no_Error al borrar la imagen"
+            }
+        }else{
+            render "no_No se encontró la imagen"
+        }
+    }
+
+    @Transactional
+    def borrarArticulo_ajax(){
+
+        def articulo = Articulo.get(params.id)
+
+        try{
+            articulo.delete(flush: true)
+            render "ok_Artículo borrado correctamente"
+        }catch (e){
+            println("Error al borrar el artículo " + articulo.errors + e)
+            render "no_Error al borrar el artículo"
+        }
+    }
+
+
 }
+
+

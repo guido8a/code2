@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <title>Lista de Articulo</title>
+    <title>Lista de Artículos</title>
 </head>
 <body>
 
@@ -20,11 +20,11 @@
                     style="margin-right: 2px;">
                 <i class="bi bi-file-earmark-text"></i> Artículos
             </g:link>
-            <g:link controller="descarga" action="list"
-                    class="btn ${controllerName == 'descarga' ? 'btn-primary' : 'btn-outline-primary'}"
-                    style="margin-right: 2px;">
-                <i class="bi bi-download"></i> Descargas
-            </g:link>
+%{--            <g:link controller="descarga" action="list"--}%
+%{--                    class="btn ${controllerName == 'descarga' ? 'btn-primary' : 'btn-outline-primary'}"--}%
+%{--                    style="margin-right: 2px;">--}%
+%{--                <i class="bi bi-download"></i> Descargas--}%
+%{--            </g:link>--}%
         </div>
     </div>
 </div>
@@ -35,17 +35,17 @@
         <g:select name="seccion_name" id="seccion" optionKey="id" optionValue="titulo"
                   class="form-control" from="${code2.Seccion.list([sort: 'titulo', order: 'asc'])}"/>
     </div>
-    <div class="btn-group col-md-1 ms-4">
-        <g:link action="form" class="btn btn-primary btnCrear" >
+    <div class="btn-group col-md-2 ms-4">
+        <button type="button" class="btn btn-primary"
+                onclick="editarArticulo(null, '${articulo?.titulo}')" title="Crear nuevo artículo">
             <i class="fa fa-file-text"></i> Crear Artículo
-        </g:link>
+        </button>
     </div>
 </div>
 
 <div class="justify-content-center mb-3 mt-3" id="divArticulos">
 
 </div>
-
 
 <script type="text/javascript">
     var id = null;
@@ -55,11 +55,6 @@
     $("#seccion").change(function () {
         let seccion = $(this).val()
         cargarTablaArticulos(seccion);
-    });
-
-    $(".btnCrear").click(function() {
-        location.href = '${createLink(action: 'articulo')}'
-        return false;
     });
 
     function deleteRow(itemId) {
@@ -110,9 +105,6 @@
         }); //ajax
     }
 
-
-
 </script>
-
 </body>
 </html>

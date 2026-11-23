@@ -4,9 +4,10 @@
             <thead class="table-dark sticky-top">
             <tr style="width: 100%">
                 <th scope="col" style="width: 5%;">#</th>
-                <th scope="col" style="width: 20%;">Título</th>
-                <th scope="col" style="width: 50%;">Descripción</th>
-                <th scope="col" style="width: 10%;">Estado</th>
+                <th scope="col" style="width: 17%;">Título</th>
+                <th scope="col" style="width: 47%;">Descripción</th>
+                <th scope="col" style="width: 8%;">Estado</th>
+                <th scope="col" style="width: 8%;">Destacado</th>
                 <th scope="col" style="width: 15%;" class="text-center">Acciones</th>
             </tr>
             </thead>
@@ -29,6 +30,19 @@
                         </g:else>
 
                     </td>
+                    <td style="text-align: center">
+                        <g:if test="${articulo?.destacado == 'S'}">
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success">
+                                SI
+                            </span>
+                        </g:if>
+                        <g:else>
+                            <span class="badge bg-warning bg-opacity-10 text-success border border-warning">
+                                NO
+                            </span>
+                        </g:else>
+
+                    </td>
                     <td class="text-center">
                         <div class="btn-group btn-group-sm" role="group">
                             <button type="button" class="btn btn-primary"
@@ -44,7 +58,7 @@
                                 <i class="fa fa-upload"></i>
                             </button>
                             <button type="button" class="btn btn-danger"
-                                    onclick="deleteRow(${articulo.id})" title="Eliminar">
+                                    onclick="deleteArticulo(${articulo.id}, '${articulo?.titulo}')" title="Eliminar">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </div>
@@ -161,5 +175,41 @@
 
     function cerrarEditarArticulo(){
        dart.modal("hide");
+    }
+
+    function deleteArticulo(id, nombre){
+        bootbox.confirm({
+            message: "<i class='fa fa-3x fa-trash text-danger'></i> <strong style='font-size: 14px'>  Está seguro que desea borrar el artículo: </strong> " +  nombre  + " ?",
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-trash"></i> Borrar',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancelar',
+                    className: 'btn-info'
+                }
+            },
+            callback: function (result) {
+                if(result){
+                    $.ajax({
+                        type: 'POST',
+                        url: '${createLink(controller: 'articulo', action: 'borrarArticulo_ajax')}',
+                        data:{
+                            id: id
+                        },
+                        success: function (msg) {
+                            var parts = msg.split("_");
+                            if(parts[0] === 'ok'){
+                                resultado(parts[1],"success");
+                                cargarTablaArticulos('${seccion?.id}')
+                            }else{
+                                resultado(parts[1], 'error')
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 </script>

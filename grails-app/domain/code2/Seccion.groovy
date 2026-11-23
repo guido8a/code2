@@ -34,10 +34,9 @@ class Seccion {
     static constraints = {
         menu(blank:false,size:1..63)
         titulo(blank:false,size:0..255)
-        subtitulo(blank:true,size:0..255)
+        subtitulo(blank:false,size:0..255)
         orden(blank:false)
         estado(blank:false, inList: ["A", "N"])
-//        estado(blank:true, size:0..255)
         imagen(nullable: true)
     }
 

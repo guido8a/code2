@@ -1,3 +1,4 @@
+<%@ page import="code2.Seccion" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,11 +10,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <asset:stylesheet src="styles.css"/>
     <asset:stylesheet src="fontawesome.min.css"/>
-%{--    <asset:javascript src="jquery-3.3.1.min.js"/>--}%
+    %{--    <asset:javascript src="jquery-3.3.1.min.js"/>--}%
     <asset:javascript src="jquery-3.7.0.min.js"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <asset:javascript src="all.min.js"/>
-    <asset:javascript src="application.js"/>
+    %{--    <asset:javascript src="application.js"/>--}%
     <g:layoutHead/>
+
+    <style>
+
+    .navbar {
+        position: relative;
+        z-index: 1030;
+    }
+
+    .navbar .dropdown-menu {
+        z-index: 1050;
+    }
+
+    .dropdown-menu {
+        z-index: 1050 !important;
+    }
+
+    </style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,26 +59,18 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="blog-home.html">Sistemas Web</a></li>
-                        <li><a class="dropdown-item" href="blog-post.html">Sistemas Expertos</a></li>
-                        <li><a class="dropdown-item" href="blog-post.html">Manejadores de contenidos</a></li>
-                        <li><a class="dropdown-item" href="blog-post.html">Consultoría</a></li>
-                        <li><a class="dropdown-item" href="blog-post.html">Capacitación</a></li>
-                        <li><a class="dropdown-item" href="blog-post.html">Cursos y Talleres</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                        <g:each in="${code2.Articulo.findAllBySeccion(code2.Seccion.get(2)).sort {it.orden}}" var="articulo" >
+                            <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: articulo?.id])}">${articulo?.titulo}</a></li>
+                        </g:each>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 5])}">Gestión de Obras</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 8])}">Gestión de Trámites</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 4])}">Administración de Consultorios</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 1])}">Evaluación Docentes</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 9])}">Bitácora de conocimientos</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 15])}">Administración de política pública</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 21])}">Administración de condominios</a></li>
-                        <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: 22])}">Sistema de contabilidad</a></li>
+                        <g:each in="${code2.Articulo.findAllBySeccion(code2.Seccion.get(3)).sort {it.orden}}" var="articulo" >
+                            <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: articulo?.id])}">${articulo?.titulo}</a></li>
+                        </g:each>
                     </ul>
                 </li>
             </ul>
@@ -80,14 +92,14 @@
     </div>
 </footer>
 
-%{--<asset:javascript src="jquery-3.3.1.min.js"/>--}%
-<asset:javascript src="jquery-3.7.0.min.js"/>
-<asset:javascript src="jquery.validate.min.js"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+%{--<asset:javascript src="jquery-3.3.1.min.js"/>--}%
+%{--<asset:javascript src="jquery-3.7.0.min.js"/>--}%
+<asset:javascript src="jquery.validate.min.js"/>
+
 <asset:javascript src="bootbox.min.js"/>
-<%-- 3. Scripts del template --%>
 <asset:javascript src="scripts.js"/>
-<%-- 4. Scripts específicos de cada página (DESCOMENTADO) --%>
+<asset:javascript src="application.js"/>
 <g:pageProperty name="page.scripts"/>
 
 

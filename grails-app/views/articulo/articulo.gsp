@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="code2.Imagen" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,6 @@
         <div class="row gx-5">
             <div class="col-lg-3">
                 <div class="d-flex align-items-center mt-lg-5 mb-4">
-
                     <div class="ms-3">
                         <asset:image src="tedein-logo.png" alt="TEDEIN" style="height: 60px;" class="me-3"/>
                         <div class="fw-bold">TEDEIN S.A.</div>
@@ -25,33 +24,43 @@
                     <header class="mb-4">
                         <!-- Post title-->
                         <h1 class="fw-bolder mb-1">${articulo?.titulo}</h1>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#">Sistema Web</a>
-                        <a class="badge bg-info text-decoration-none link-light" href="#">En línea</a>
+%{--                        <a class="badge bg-secondary text-decoration-none link-light" href="#">Sistema Web</a>--}%
+                        <a class="badge bg-info text-decoration-none link-light" href="#">Sistema Web</a>
                     </header>
 
                     <figure class="mb-2" style="text-align: center">
-                        <asset:image src="construccion.jpeg" alt="" class="img-fluid rounded"/>
+                        <img src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_${articulo?.id}/${code2.Imagen.findByArticuloAndOrden(articulo, 1)?.nombre}"])}"
+                             alt="Principal"
+                             class="img-fluid rounded"/>
                     </figure>
 
                     <section class="mb-5">
                         <p class="fw-bolder mb-4 mt-5">${articulo?.descripcion}</p>
-                        <div id="carruselProducto" class="carousel slide mb-5" data-bs-ride="carousel">
+                        <div id="carruselProducto" class="carousel slide mb-6" data-bs-ride="carousel">
                             <div class="carousel-inner rounded">
                                 <div class="carousel-item active">
-                                    <asset:image src="construccion.jpeg" alt="Vista 1" class="d-block w-100"
-                                                 style="height: 180px; object-fit: cover;"/>
+                                    <img src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_${articulo.id}/${code2.Imagen.findByArticuloAndOrden(articulo, 2)?.nombre}"])}"
+                                         alt="Carrusel 1"
+                                         style="height: 300px; object-fit: fill;"
+                                         class="d-block w-100"/>
                                 </div>
                                 <div class="carousel-item">
-                                    <asset:image src="construccion.jpeg" alt="Vista 2" class="d-block w-100"
-                                                 style="height: 180px; object-fit: cover;"/>
+                                    <img src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_${articulo.id}/${code2.Imagen.findByArticuloAndOrden(articulo, 3)?.nombre}"])}"
+                                         alt="Carrusel 2"
+                                         style="height: 300px; object-fit: fill;"
+                                         class="d-block w-100"/>
                                 </div>
                                 <div class="carousel-item">
-                                    <asset:image src="construccion.jpeg" alt="Vista 3" class="d-block w-100"
-                                                 style="height: 180px; object-fit: cover;"/>
+                                    <img src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_${articulo.id}/${code2.Imagen.findByArticuloAndOrden(articulo, 4)?.nombre}"])}"
+                                         alt="Carrusel 3"
+                                         style="height: 300px; object-fit: fill;"
+                                         class="d-block w-100"/>
                                 </div>
                                 <div class="carousel-item">
-                                    <asset:image src="construccion.jpeg" alt="Vista 4" class="d-block w-100"
-                                                 style="height: 180px; object-fit: cover;"/>
+                                    <img src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_${articulo.id}/${code2.Imagen.findByArticuloAndOrden(articulo, 5)?.nombre}"])}"
+                                         alt="Carrusel 4"
+                                         style="height: 300px; object-fit: fill;"
+                                         class="d-block w-100"/>
                                 </div>
                             </div>
 

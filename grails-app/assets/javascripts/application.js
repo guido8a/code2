@@ -39,16 +39,6 @@ function cerrarLoader($loader) {
             inst.hide();
         }
     } catch (e) {}
-
-    // 2. Fallback manual: quitar clases y backdrop
-    // setTimeout(function () {
-    //     if ($(el).hasClass('show')) {
-    //         $(el).removeClass('show').css('display', 'none').attr('aria-hidden', 'true');
-    //         // ⚠️ NO quitar el backdrop del padre
-    //         // Solo quitar el backdrop del loader si es diferente
-    //         $('body').removeClass('modal-open'); // esto puede afectar al padre
-    //     }
-    // }, 400);
 }
 function resultado(texto, tipo) {
     let icono, color;
@@ -66,7 +56,7 @@ function resultado(texto, tipo) {
         color = 'text-primary';
     }
 
-    var dialog = bootbox.dialog({
+    var dr = bootbox.dialog({
         message: '<p class="text-center mb-0" style="font-size: 14px">' +
             '<i class="fa fa-3x ' + icono + ' ' + color + '"></i><br>' +
             texto +
@@ -75,8 +65,8 @@ function resultado(texto, tipo) {
     });
 
     setTimeout(function () {
-        dialog.modal('hide');
+        dr.modal('hide');
     }, 3000);
-    return dialog;
+    return dr;
 }
 
