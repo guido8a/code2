@@ -13,7 +13,10 @@
             <div class="col-lg-8 col-xl-7 col-xxl-6">
                 <div class="my-5 text-center text-xl-start">
                     <div class="d-flex align-items-center justify-content-center justify-content-xl-start my-5">
-                        <asset:image src="tedein-logo.png" alt="TEDEIN" style="height: 60px;" class="me-3"/>
+                        <img class="me-3"
+                             style="height: 60px;"
+                             src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                             alt="Logo" />
                         <h1 class="display-5 fw-bolder text-white mb-0">
                             TEDEIN S.A.
                         </h1>
@@ -53,7 +56,7 @@
             </div>
         </div>
         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#productos">Más servicios</a>
+            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="${createLink(controller: 'articulo', action: 'servicio_list')}">Más servicios</a>
         </div>
     </div>
 </section>
@@ -68,7 +71,10 @@
                     les permita contar con una herramienta útil y eficaz para sus procesos."
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <asset:image src="tedein-logo.png" alt="TEDEIN" style="height: 30px;" class=" me-3"/>
+                        <img class="me-3"
+                             style="height: 30px;"
+                             src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                             alt="Logo" />
                         <div class="fw-bold">
                             TEDEIN S.A.
                         </div>
@@ -108,7 +114,10 @@
                             <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                 <div class="d-flex align-items-end justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <img class="rounded-circle img-fluid w-5 h-5 me-3" style="object-fit: cover;" src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}" alt="Logo" />
+                                        <img class="rounded-circle img-fluid w-5 h-5 me-3"
+                                             style="width: 40px; height: 40px; object-fit: cover;"
+                                             src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                                             alt="Logo" />
                                         <div class="small">
                                             <div class="fw-bold">Nuestros clientes:</div>
                                             <div class="text-muted">Prefectura de Pichincha</div>
@@ -121,7 +130,7 @@
                 </g:each>
             </g:if>
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#productos">Más productos</a>
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="${createLink(controller: 'articulo', action: 'producto_list')}">Más productos</a>
             </div>
         </div>
         <!-- Call to action-->
@@ -132,9 +141,26 @@
                     <div class="fs-4 fw-bold text-white">Contáctenos</div>
                     <div class="text-white">Tienes alguna pregunta? Llámanos o escríbenos</div>
                 </div>
+                <div class="mb-2">
+                    <div class="text-white"><strong><i class="fa fa-phone"></i> Teléfonos:</strong> 02-501-9108 / 098 491 6620</div>
+                    <p class="text-white mb-0">
+                        <i class="bi bi-geo-alt me-1 text-primary"></i>
+                        Quito, Ecuador
+                    </p>
+                </div>
                 <div class="ms-xl-4">
-                    <div class="text-white"><strong>Teléfonos:</strong> 02-501-9108 / 098 491 6620</div>
-                    <div class="text-white"><strong>Email:</strong> soporte@tedein.com.ec <br/> informacion@tedein.com.ec </div>
+                    <div class="d-grid gap-2">
+                        <a href="mailto:soporte@tedein.com.ec"
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-envelope me-1"></i>
+                            soporte@tedein.com.ec
+                        </a>
+                        <a href="mailto:informacion@tedein.com.ec"
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-envelope me-1"></i>
+                            informacion@tedein.com.ec
+                        </a>
+                    </div>
                 </div>
             </div>
         </aside>

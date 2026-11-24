@@ -184,6 +184,23 @@ class ArticuloController {
         }
     }
 
+    def servicio(){
+        def articulo = Articulo.get(params.id)
+        return [articulo: articulo]
+    }
+
+    def acerca(){
+        def articulo = Articulo.get(params.id)
+        return [articulo: articulo]
+    }
+
+    def producto_list(){
+
+    }
+
+    def servicio_list(){
+
+    }
 
 }
 

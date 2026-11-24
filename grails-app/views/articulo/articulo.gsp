@@ -10,10 +10,48 @@
     <div class="container px-5 my-5">
         <div class="row gx-5">
             <div class="col-lg-3">
-                <div class="d-flex align-items-center mt-lg-5 mb-4">
-                    <div class="ms-3">
-                        <asset:image src="tedein-logo.png" alt="TEDEIN" style="height: 60px;" class="me-3"/>
-                        <div class="fw-bold">TEDEIN S.A.</div>
+                <div class="d-flex flex-column align-items-center text-center mt-lg-5 mb-4">
+                    <img class="mb-2"
+                         style="height: 60px;"
+                         src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                         alt="Logo" />
+                    <div class="fw-bold">TEDEIN S.A.</div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
+                        <div class="card-body p-4 text-center">
+                            <div class="mb-3">
+                                <i class="bi bi-chat-dots-fill text-primary" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h5 class="fw-bolder mb-3">¿Tienes preguntas?</h5>
+                            <p class="text-muted mb-4 small">
+                                Nuestro equipo está disponible para ayudarte.
+                            </p>
+
+                            <div class="d-grid gap-2">
+                                <a href="mailto:soporte@tedein.com.ec"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-envelope me-1"></i>
+                                    soporte@tedein.com.ec
+                                </a>
+                                <a href="mailto:informacion@tedein.com.ec"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-envelope me-1"></i>
+                                    informacion@tedein.com.ec
+                                </a>
+                            </div>
+                            <hr class="my-4"/>
+                            <div class="text-start small">
+                                <p class="text-muted mb-2">
+                                    <i class="fa fa-phone me-1 text-primary"></i>
+                                    <strong>Teléfonos:</strong> 02-501-9108 <br/> 098 491 6620
+                                </p>
+                                <p class="text-muted mb-0">
+                                    <i class="bi bi-geo-alt me-1 text-primary"></i>
+                                    Quito, Ecuador
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,5 +152,11 @@
         </div>
     </div>
 </section>
+
+<div class="d-flex justify-content-center mb-5">
+    <a class="btn btn-primary btn-lg px-4" href="${createLink(controller: 'articulo', action: 'producto_list')}">
+        <i class="fa fa-house-laptop"></i> Más productos
+    </a>
+</div>
 
 </body>

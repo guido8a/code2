@@ -38,7 +38,12 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="${createLink(uri: '/')}">TEDEIN S.A.</a>
+        <a class="navbar-brand" href="${createLink(uri: '/')}">
+            <img class="me-3"
+                 style="height: 30px;"
+                 src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                 alt="Logo" />
+            TEDEIN S.A.</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -46,27 +51,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <g:link class="nav-link" uri="/">Inicio</g:link>
+                    <g:link class="nav-link" uri="/"><i class="fa fa-bookmark"></i> Inicio</g:link>
+                </li>
+%{--                <li class="nav-item">--}%
+%{--                    <g:link class="nav-link" controller="contact"><i class="fa fa-user"></i> Contacto</g:link>--}%
+%{--                </li>--}%
+                <li class="nav-item">
+                    <g:link class="nav-link" controller="articulo" action="acerca" params="[id: 2]"><i class="fa fa-eye"></i> Acerca</g:link>
                 </li>
                 <li class="nav-item">
-                    <g:link class="nav-link" controller="about">Acerca</g:link>
-                </li>
-                <li class="nav-item">
-                    <g:link class="nav-link" controller="contact">Contacto</g:link>
-                </li>
-                <li class="nav-item">
-                    <g:link class="nav-link" controller="contact">Descargas</g:link>
+                    <g:link class="nav-link" controller="contact"><i class="fa fa-download"></i> Descargas</g:link>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-handshake"></i> Servicios</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <g:each in="${code2.Articulo.findAllBySeccion(code2.Seccion.get(2)).sort {it.orden}}" var="articulo" >
-                            <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: articulo?.id])}">${articulo?.titulo}</a></li>
+                            <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'servicio', params: [id: articulo?.id])}">${articulo?.titulo}</a></li>
                         </g:each>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-house-laptop"></i> Productos</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <g:each in="${code2.Articulo.findAllBySeccion(code2.Seccion.get(3)).sort {it.orden}}" var="articulo" >
                             <li><a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'articulo', params: [id: articulo?.id])}">${articulo?.titulo}</a></li>
