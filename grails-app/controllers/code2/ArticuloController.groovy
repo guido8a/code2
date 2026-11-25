@@ -303,6 +303,10 @@ class ArticuloController {
         def archivo = articulo.archivo
         def path = "/var/tedein/archivos/articulo_${articulo?.id}/" + archivo
 
+        println("id " + articulo?.id)
+        println("archivo " + articulo?.archivo)
+        println("path " + path)
+
         def file = new File(path)
         if (file.exists()) {
             def b = file.getBytes()
