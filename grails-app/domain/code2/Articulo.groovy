@@ -13,6 +13,8 @@ class Articulo {
     String estado
     int orden
     String destacado
+    String cliente
+    String archivo
 
     static mapping = {
         table 'artc'
@@ -33,6 +35,8 @@ class Articulo {
             estado          column: 'artcetdo'
             orden           column: 'artcordn'
             destacado       column: 'artcdstc'
+            cliente         column: 'artcclnt'
+            archivo         column: 'artcarch'
         }
     }
     static constraints = {
@@ -44,6 +48,8 @@ class Articulo {
         metaDescripcion(blank:false, size: 0..255)
         estado(size:1..1, inList: ["A", "P"])
         destacado(blank:true, nullable: true, size: 0..1)
+        cliente(blank:true, nullable: true, size: 0..255)
+        archivo(blank:true, nullable: true, size: 0..255)
     }
 
 

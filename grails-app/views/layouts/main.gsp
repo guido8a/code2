@@ -53,14 +53,11 @@
                 <li class="nav-item">
                     <g:link class="nav-link" uri="/"><i class="fa fa-bookmark"></i> Inicio</g:link>
                 </li>
-%{--                <li class="nav-item">--}%
-%{--                    <g:link class="nav-link" controller="contact"><i class="fa fa-user"></i> Contacto</g:link>--}%
-%{--                </li>--}%
                 <li class="nav-item">
                     <g:link class="nav-link" controller="articulo" action="acerca" params="[id: 2]"><i class="fa fa-eye"></i> Acerca</g:link>
                 </li>
                 <li class="nav-item">
-                    <g:link class="nav-link" controller="contact"><i class="fa fa-download"></i> Descargas</g:link>
+                    <g:link class="nav-link" controller="articulo" action="descargas"><i class="fa fa-download"></i> Descargas</g:link>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-handshake"></i> Servicios</a>

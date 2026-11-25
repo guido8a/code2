@@ -118,6 +118,16 @@
         </div>
         <div class="row g-3 mb-3">
             <div class="col-md-12">
+                <label for="cliente" class="form-label fw-semibold text-secondary">
+                    <i class="fa fa-users me-1"></i> Clientes
+                </label>
+                <g:textField name="cliente" id="cliente"
+                             class="form-control" maxlength="255"
+                             value="${artc?.cliente}"/>
+            </div>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col-md-12">
                 <label for="metaDescripcion" class="form-label fw-semibold text-secondary">
                     <i class="bi bi-search me-1"></i> Meta descripción (SEO)
                 </label>
@@ -167,7 +177,8 @@
                     imagen: $("#imagen").val(),
                     metaDescripcion: $("#metaDescripcion").val(),
                     estado: $("#estado").val(),
-                    destacado: $("#destacado").val()
+                    destacado: $("#destacado").val(),
+                    cliente: $("#cliente").val()
                 },
                 success: function (msg) {
                     var parts = msg.split("_");

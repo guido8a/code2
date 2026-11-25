@@ -53,6 +53,15 @@
         </div>
     </g:if>
 
+    <g:if test="${artc.cliente}">
+        <div class="row mb-3">
+            <div class="col-12">
+                <span class="text-muted small d-block mb-1">Clientes</span>
+                <p class="mb-0 fst-italic">${artc.cliente}</p>
+            </div>
+        </div>
+    </g:if>
+
     <g:if test="${artc.metaDescripcion}">
         <div class="row mb-3">
             <div class="col-12">

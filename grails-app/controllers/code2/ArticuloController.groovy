@@ -202,6 +202,127 @@ class ArticuloController {
 
     }
 
+    def descargas(){
+        def seccion = Seccion.get(12)
+        def descargas = Articulo.findAllBySeccionAndDestacado(seccion, 'S').sort{it.orden}
+        return [descargas: descargas]
+    }
+
+    def archivo_ajax(){
+        def articulo = Articulo.get(params.id)
+        return [articulo: articulo]
+    }
+
+    def tablaArchivos_ajax(){
+        def articulo = Articulo.get(params.id)
+        return [articulo: articulo]
+    }
+
+    @Transactional
+    def uploadArchivoArticulo() {
+//        println("params ca " + params)
+
+        def articulo = Articulo.get(params.id)
+        def path = "/var/tedein/archivos/articulo_${articulo?.id}/"
+        new File(path).mkdirs()
+
+        def f = request.getFile('file')  //archivo = name del input type file
+        if (f && !f.empty) {
+            def fileName = f.getOriginalFilename() //nombre original del archivo
+            def ext =''
+            def parts = fileName.split("\\.")
+            fileName = ""
+            parts.eachWithIndex { obj, i ->
+                if (i < parts.size() - 1) {
+                    fileName += obj
+                } else {
+                    ext = obj
+                }
+            }
+                fileName = fileName + "." + ext.toLowerCase()
+                def pathFile = path + fileName
+                def file = new File(pathFile)
+                println "subiendo archivo: $fileName"
+
+                def archivoExiste = articulo?.archivo
+                def old = archivoExiste
+
+                if (old && old.trim() != "") {
+                    def oldPath = path + old
+                    def oldFile = new File(oldPath)
+                    if (oldFile.exists()) {
+                        oldFile.delete()
+                    }
+                }
+
+                f.transferTo(file)
+
+                 articulo.archivo = fileName
+                 articulo.save(flush: true)
+
+                render "ok_Archivo subido correctamente"
+
+
+        } else {
+            render "no_Seleccione un archivo"
+        }
+    }
+
+    @Transactional
+    def borrarArchivo_ajax(){
+        def articulo = Articulo.get(params.id)
+
+        if(articulo){
+            try{
+
+                def old = articulo?.archivo
+                if (old && old.trim() != "") {
+                    def oldPath = "/var/tedein/archivos/articulo_${articulo?.id}/" + old
+                    def oldFile = new File(oldPath)
+                    if (oldFile.exists()) {
+                        oldFile.delete()
+                    }
+                }
+
+                articulo.archivo = null
+                articulo.save(flush:true)
+                render "ok_Archivo borrado correctamente"
+
+            }catch(e){
+                println("error al borrar el archivo " + articulo.errors + e)
+                render "no_Error al borrar el archivo"
+            }
+        }else{
+            render "no_No se encontró el artículo"
+        }
+    }
+
+    @Transactional
+    def descargarArchivo(){
+        def articulo = Articulo.get(params.id)
+        def archivo = articulo.archivo
+        def path = "/var/tedein/archivos/articulo_${articulo?.id}/" + archivo
+
+        def file = new File(path)
+        if (file.exists()) {
+            def b = file.getBytes()
+
+            def ext = articulo.archivo.split("\\.")
+            ext = ext[ext.size() - 1]
+
+//            def ext = archivo.name.tokenize('.').last().toLowerCase()
+            def contentType = servletContext.getMimeType(archivo) ?: 'application/octet-stream'
+            response.setContentType(contentType)
+
+//            response.setContentType(ext == 'pdf' ? "application/pdf" : "image/" + ext)
+            response.setHeader("Content-disposition", "attachment; filename=" + articulo.archivo)
+            response.setContentLength(b.length)
+            response.getOutputStream().write(b)
+        } else {
+            render "no_No se encontró el archivo " + "_ " + articulo?.archivo
+        }
+    }
+
 }
 
 

@@ -57,6 +57,12 @@
                                     onclick="imagenesArticulo(${articulo.id}, '${articulo?.titulo}')" title="Imágenes">
                                 <i class="fa fa-upload"></i>
                             </button>
+                            <g:if test="${articulo?.seccion?.titulo == 'Descargas'}">
+                                <button type="button" class="btn btn-warning"
+                                        onclick="subirArchivo(${articulo.id}, '${articulo?.titulo}')" title="Subir Archivo">
+                                    <i class="fa fa-upload"></i>
+                                </button>
+                            </g:if>
                             <button type="button" class="btn btn-danger"
                                     onclick="deleteArticulo(${articulo.id}, '${articulo?.titulo}')" title="Eliminar">
                                 <i class="fa fa-trash"></i>
@@ -67,7 +73,7 @@
             </g:each>
             <g:if test="${!articuloInstanceList}">
                 <tr>
-                    <td colspan="5" class="text-center text-muted py-4">
+                    <td colspan="6" class="text-center text-muted py-4">
                         <i class="bi bi-inbox fs-3 d-block mb-2"></i>
                         No hay artículos registrados.
                     </td>
@@ -211,5 +217,31 @@
                 }
             }
         });
+    }
+
+    function subirArchivo(id, nombre) {
+        $.ajax({
+            type: "POST",
+            url: "${createLink(controller: 'articulo', action:'archivo_ajax')}",
+            data: {
+                id: id
+            },
+            success: function (msg) {
+                var va = bootbox.dialog({
+                    id: "dlgSubirArchivoArticulo",
+                    title: "<i class='fa fa-edit text-bg-success'></i> Artículo: " + nombre,
+                    closeButton: false,
+                    message: msg,
+                    buttons: {
+                        cancelar: {
+                            label: "<i class='fa fa-times'></i>  Cancelar",
+                            className: "btn-info",
+                            callback: function () {
+                            }
+                        }
+                    } //buttons
+                }); //dialog
+            } //success
+        }); //ajax
     }
 </script>

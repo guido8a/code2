@@ -31,7 +31,9 @@
                 </div>
             </div>
             <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                <asset:image class="img-fluid rounded-3 my-5" src="fondo.jpg" alt="Fondo"/>
+                <img class="img-fluid rounded-3 my-5"
+                     src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 2)?.nombre}"])}"
+                     alt="Fondo Tedein" />
             </div>
         </div>
     </div>
@@ -44,11 +46,14 @@
             <div class="col-lg-8">
                 <div class="row gx-5 row-cols-1 row-cols-md-2">
                     <g:if test="${code2.Articulo.findAllByDestacadoAndSeccion('S', code2.Seccion.get(2))}">
-                        <g:each in="${code2.Articulo.findAllByDestacadoAndSeccion('S', code2.Seccion.get(2))[0..3]}" var="seccion" >
+                        <g:each in="${code2.Articulo.findAllByDestacadoAndSeccion('S', code2.Seccion.get(2))[0..3]}" var="servicio" >
                             <div class="col mb-5 h-100">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                                <h2 class="h5">${seccion?.titulo}</h2>
-                                <p class="mb-0">${seccion?.subtitulo}</p>
+                                <a class="text-decoration-none link-dark" id="servicio_${servicio?.id}"
+                                   href="${createLink(controller: 'articulo', action: 'servicio', params: [id: servicio?.id])}">
+                                    <h2 class="h5">${servicio?.titulo}</h2>
+                                    <p class="mb-0">${servicio?.subtitulo}</p>
+                                </a>
                             </div>
                         </g:each>
                     </g:if>
@@ -113,16 +118,18 @@
                             </div>
                             <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                                 <div class="d-flex align-items-end justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle img-fluid w-5 h-5 me-3"
-                                             style="width: 40px; height: 40px; object-fit: cover;"
-                                             src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
-                                             alt="Logo" />
-                                        <div class="small">
-                                            <div class="fw-bold">Nuestros clientes:</div>
-                                            <div class="text-muted">Prefectura de Pichincha</div>
+                                    <g:if test="${articulo?.cliente}">
+                                        <div class="d-flex align-items-center">
+                                            <img class="rounded-circle img-fluid w-5 h-5 me-3"
+                                                 style="width: 40px; height: 40px; object-fit: cover;"
+                                                 src="${createLink(controller: 'imagen', action: 'mostrarImagen', params: [ruta: "articulo_2/${code2.Imagen.findByArticuloAndOrden(code2.Articulo.get(2), 1)?.nombre}"])}"
+                                                 alt="Logo" />
+                                            <div class="small">
+                                                <div class="fw-bold">Nuestros clientes:</div>
+                                                <div class="text-muted">${articulo?.cliente ?: ''}</div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </g:if>
                                 </div>
                             </div>
                         </div>
@@ -135,36 +142,36 @@
         </div>
         <!-- Call to action-->
         <section class="py-2" id="informacion">
-        <aside class="bg-dark rounded-3 p-4 p-sm-5 mt-5">
-            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                <div class="mb-4 mb-xl-0">
-                    <div class="fs-4 fw-bold text-white">Contáctenos</div>
-                    <div class="text-white">Tienes alguna pregunta? Llámanos o escríbenos</div>
-                </div>
-                <div class="mb-2">
-                    <div class="text-white"><strong><i class="fa fa-phone"></i> Teléfonos:</strong> 02-501-9108 / 098 491 6620</div>
-                    <p class="text-white mb-0">
-                        <i class="bi bi-geo-alt me-1 text-primary"></i>
-                        Quito, Ecuador
-                    </p>
-                </div>
-                <div class="ms-xl-4">
-                    <div class="d-grid gap-2">
-                        <a href="mailto:soporte@tedein.com.ec"
-                           class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-envelope me-1"></i>
-                            soporte@tedein.com.ec
-                        </a>
-                        <a href="mailto:informacion@tedein.com.ec"
-                           class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-envelope me-1"></i>
-                            informacion@tedein.com.ec
-                        </a>
+            <aside class="bg-dark rounded-3 p-4 p-sm-5 mt-5">
+                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                    <div class="mb-4 mb-xl-0">
+                        <div class="fs-4 fw-bold text-white">Contáctenos</div>
+                        <div class="text-white">Tienes alguna pregunta? Llámanos o escríbenos</div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="text-white"><strong><i class="fa fa-phone"></i> Teléfonos:</strong> 02-501-9108 / 098 491 6620</div>
+                        <p class="text-white mb-0">
+                            <i class="bi bi-geo-alt me-1 text-primary"></i>
+                            Quito, Ecuador
+                        </p>
+                    </div>
+                    <div class="ms-xl-4">
+                        <div class="d-grid gap-2">
+                            <a href="mailto:soporte@tedein.com.ec"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-envelope me-1"></i>
+                                soporte@tedein.com.ec
+                            </a>
+                            <a href="mailto:informacion@tedein.com.ec"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-envelope me-1"></i>
+                                informacion@tedein.com.ec
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </aside>
-    </section>
+            </aside>
+        </section>
     </div>
 </section>
 
