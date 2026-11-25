@@ -203,7 +203,7 @@ class ArticuloController {
     }
 
     def descargas(){
-        def seccion = Seccion.get(12)
+        def seccion = Seccion.findByTitulo('Descargas')
         def descargas = Articulo.findAllBySeccionAndDestacado(seccion, 'S').sort{it.orden}
         return [descargas: descargas]
     }
@@ -318,7 +318,6 @@ class ArticuloController {
             def contentType = servletContext.getMimeType(archivo) ?: 'application/octet-stream'
             response.setContentType(contentType)
 
-//            response.setContentType(ext == 'pdf' ? "application/pdf" : "image/" + ext)
             response.setHeader("Content-disposition", "attachment; filename=" + articulo.archivo)
             response.setContentLength(b.length)
             response.getOutputStream().write(b)
