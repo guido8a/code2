@@ -122,7 +122,7 @@
                     <i class="fa fa-users me-1"></i> Clientes
                 </label>
                 <g:textField name="cliente" id="cliente"
-                             class="form-control" maxlength="255"
+                             class="form-control" maxlength="1024"
                              value="${artc?.cliente}"/>
             </div>
         </div>
