@@ -75,6 +75,49 @@
                         </g:each>
                     </ul>
                 </li>
+                <sec:ifLoggedIn>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarUser" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <sec:username/>
+                            <g:if test="${session.perfilActivo}">
+                                <g:if test="${session.perfilActivo == 'Administrador'}">
+                                    <span class="badge bg-primary ms-1">
+                                        Administrador
+                                    </span>
+                                </g:if>
+                                <g:else>
+                                    <span class="badge bg-success ms-1">
+                                        Usuario
+                                    </span>
+                                </g:else>
+                            </g:if>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUser">
+                            <g:if test="${session.perfilActivo == 'Administrador'}">
+                                <li>
+                                    <a class="dropdown-item" href="${createLink(controller: 'articulo', action: 'list')}">
+                                        <i class="fa fa-cogs me-1"></i>Administración
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                            </g:if>
+                            <li>
+                                <a class="dropdown-item" href="${createLink(uri: '/logout')}">
+                                    <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${createLink(uri: '/login')}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar sesión
+                        </a>
+                    </li>
+                </sec:ifNotLoggedIn>
             </ul>
         </div>
     </div>

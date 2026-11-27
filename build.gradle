@@ -76,6 +76,13 @@ dependencies {
     testImplementation "org.apache.grails:grails-testing-support-web"
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.spockframework:spock-core"
+
+    // Spring Security
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.security:spring-security-taglibs"
+
+    // (Opcional) Para encriptar contraseñas
+    implementation "org.springframework.security:spring-security-crypto"
 }
 
 compileJava.options.release = 21
@@ -98,4 +105,6 @@ assets {
             'webjars/bootstrap-icons/*/font/fonts/*',
     ]
 }
+
+
 
