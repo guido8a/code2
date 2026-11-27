@@ -37,10 +37,10 @@
 
                 <%-- Sección: Nosotros --%>
                 <div class="mb-5">
-%{--                    <h2 class="fw-bolder mb-3 d-flex align-items-center">--}%
-%{--                        <i class="bi bi-people text-primary me-2 fs-4"></i>--}%
-%{--                        Nosotros--}%
-%{--                    </h2>--}%
+                    <h2 class="fw-bolder mb-3 d-flex align-items-center">
+                        <i class="bi bi-people text-primary me-2 fs-4"></i>
+                        ${raw(articulo?.titulo)}
+                    </h2>
                     <div class="ps-4 border-start border-3 border-primary">
                         <div class="fs-6 text-secondary" style="line-height: 1.8;">
                             ${raw(articulo?.texto)}
