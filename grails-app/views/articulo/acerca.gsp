@@ -56,31 +56,35 @@
                     </h2>
                     <div class="ps-4 border-start border-3 border-primary">
                         <div class="row g-3">
+                            <g:each in="${clientes}" var="cliente">
+%{--                                ${cliente}--}%
+                                <div class="col-md-4">
+                                                            <div class="card h-100 border-0 shadow-sm">
+                                                                <div class="card-body text-center p-3">
+                                                                    <i class="bi bi-building fs-2 text-primary mb-2"></i>
+                                                                    <p class="mb-0 fw-semibold small">${cliente}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            </g:each>
                             <%-- Aquí puedes iterar clientes desde la BD --%>
-                            <div class="col-md-4">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center p-3">
-                                        <i class="bi bi-building fs-2 text-primary mb-2"></i>
-                                        <p class="mb-0 fw-semibold small">Prefectura de Pichincha</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center p-3">
-                                        <i class="bi bi-building fs-2 text-primary mb-2"></i>
-                                        <p class="mb-0 fw-semibold small">Cliente 2</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body text-center p-3">
-                                        <i class="bi bi-building fs-2 text-primary mb-2"></i>
-                                        <p class="mb-0 fw-semibold small">Cliente 3</p>
-                                    </div>
-                                </div>
-                            </div>
+%{--
+%{--                            <div class="col-md-4">--}%
+%{--                                <div class="card h-100 border-0 shadow-sm">--}%
+%{--                                    <div class="card-body text-center p-3">--}%
+%{--                                        <i class="bi bi-building fs-2 text-primary mb-2"></i>--}%
+%{--                                        <p class="mb-0 fw-semibold small">Cliente 2</p>--}%
+%{--                                    </div>--}%
+%{--                                </div>--}%
+%{--                            </div>--}%
+%{--                            <div class="col-md-4">--}%
+%{--                                <div class="card h-100 border-0 shadow-sm">--}%
+%{--                                    <div class="card-body text-center p-3">--}%
+%{--                                        <i class="bi bi-building fs-2 text-primary mb-2"></i>--}%
+%{--                                        <p class="mb-0 fw-semibold small">Cliente 3</p>--}%
+%{--                                    </div>--}%
+%{--                                </div>--}%
+%{--                            </div>--}%
                         </div>
                     </div>
                 </div>

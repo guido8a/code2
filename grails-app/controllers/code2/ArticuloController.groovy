@@ -191,7 +191,8 @@ class ArticuloController {
 
     def acerca(){
         def articulo = Articulo.get(params.id)
-        return [articulo: articulo]
+        def clientes = articulo.cliente.split(",")
+        return [articulo: articulo, clientes: clientes]
     }
 
     def producto_list(){
