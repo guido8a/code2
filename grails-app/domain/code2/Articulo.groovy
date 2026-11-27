@@ -48,7 +48,7 @@ class Articulo {
         metaDescripcion(blank:false, size: 0..255)
         estado(size:1..1, inList: ["A", "P"])
         destacado(blank:true, nullable: true, size: 0..1)
-        cliente(blank:true, nullable: true, size: 0..255)
+        cliente(blank:true, nullable: true, size: 0..1024)
         archivo(blank:true, nullable: true, size: 0..255)
     }
 

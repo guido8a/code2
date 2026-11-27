@@ -13,7 +13,7 @@
         <%-- Encabezado --%>
         <div class="text-center mb-5">
             <h1 class="fw-bolder mb-2">${articulo?.titulo}</h1>
-            <p class="lead fw-normal text-muted mb-0">¿Quiénes somos?</p>
+%{--            <p class="lead fw-normal text-muted mb-0">¿Quiénes somos?</p>--}%
             <hr class="w-25 mx-auto mt-4" style="border-top: 3px solid #0d6efd; opacity: 1;"/>
         </div>
 
@@ -39,7 +39,7 @@
                 <div class="mb-5">
                     <h2 class="fw-bolder mb-3 d-flex align-items-center">
                         <i class="bi bi-people text-primary me-2 fs-4"></i>
-                        ${raw(articulo?.titulo)}
+                        ${raw(articulo?.subtitulo)}
                     </h2>
                     <div class="ps-4 border-start border-3 border-primary">
                         <div class="fs-6 text-secondary" style="line-height: 1.8;">
